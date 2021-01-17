@@ -15,7 +15,7 @@ terrafom apply
 # This command will destroy all of the resources provision in the current terraform file.
 terraform destroy
 
-# The --auto-approve function simply bypasses the required approval and simply executes the command before the switch
+# The --auto-approve function simply bypasses the required approval and simply executes the command.
 terraform apply --auto-approve
 terraform destroy --auto-approve
 ```
