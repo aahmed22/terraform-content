@@ -102,3 +102,13 @@ resource "aws_security_group" "Allow-Traffic" {
 }
 ```
 
+## Attaching custom security group to your EC2 instance
+This snippet will attach itself to the EC2 instance specified:
+
+```tf
+# Create a Network-interface attachement and assign the security group created to the EC2 instance.
+resource "aws_network_interface_sg_attachment" "sg_attachment" {
+    security_group_id       = aws_security_group.Allow-Traffic.id 
+    network_interface_id    = aws_instance.My-WebServer.primary_network_interface_id 
+}
+```
