@@ -1,3 +1,15 @@
+# Author: Abdul-Hameed Ahmed
+# DESCRIPTION:
+# The purpose of this file is to create a cloud infrastructure provisioning the following resources: 
+# VPC, Internet Gateway, Route Table, Subnet, Security Group, Network interface, Elastic IP address, 
+# EC2 Instance (Amazon Linux 2). This file creates a custom VPC, and links and Internet Gateway as well as
+# the necessary networking components. Afterwards we create an EIP address and place it on the network interface
+# on our EC2 instance. The security groups will configure ports 22, 80, 443 to allow the web server to allow incoming 
+# traffic to be open for all routes and we upload a user data script for installing and setting up the HTTPD web server. 
+# END OF DESCRIPTION
+
+
+
 # Adding AWS default profile to Terraform file. 
 provider "aws" {
     profile = "default"
