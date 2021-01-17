@@ -53,3 +53,52 @@ resource "aws_instance" "My-WebServer" {
 
 }
 ```
+
+## Adding a custom security group to your Httpd web server (Amazon Linux 2)
+The following snippet will create a security group that will configure ports the following ports: 22, 80, 443
+
+```tf
+# Create a security group called "Allow-Traffic" that have the following ports open:
+# Ports 22, 80, 443 to access server.
+resource "aws_security_group" "Allow-Traffic" {
+    name            = "Allow-WebTraffic" 
+    description     = "Allow Web Inbound Traffic"
+    vpc_id          = aws_default_vpc.default.id
+
+    ingress {
+        description = "HTTPS"
+        from_port   = 443
+        to_port     = 443
+        protocol    = "tcp"
+        cidr_blocks  = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        description = "HTTP"
+        from_port   = 80
+        to_port     = 80
+        protocol    = "tcp"
+        cidr_blocks  = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        description = "SSH"
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks  = ["0.0.0.0/0"]
+    }
+
+    egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks  = ["0.0.0.0/0"]
+    }
+
+    tags = {
+        Name = "allow_web_traffic"
+    }
+}
+```
+
